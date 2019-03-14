@@ -9,5 +9,5 @@ before_install:
     - echo "BEFORE INSTALL END"
     - docker build -t deepakdavisc/docker-react -f Dockerfile.dev .
 
-scripts:
+script:
     -  docker run deepakdavisc/docker-react npm run test -- --coverage

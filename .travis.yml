@@ -1,27 +1,27 @@
 sudo: required
 
 services:
-    - docker
+  - docker
 
 before_install:
-    - echo "BEFORE INSTALL START"
-    - gem install bundler
-    - echo "BEFORE INSTALL END"
-    - docker build -t deepakdavisc/docker-react -f Dockerfile.dev .
+  - echo "BEFORE INSTALL START"
+  - gem install bundler
+  - echo "BEFORE INSTALL END"
+  - docker build -t deepakdavisc/docker-react -f Dockerfile.dev .
 
 script:
-    -  docker run deepakdavisc/docker-react npm run test -- --coverage
+  -  docker run deepakdavisc/docker-react npm run test -- --coverage
 
 deploy:
-    provider: elasticbeanstalk
-    region: "us-east-2"
-    app: "docker-react"
-    env: "DockerReact-env"
-    bucket_name: "elasticbeanstalk-us-east-2-274412780533"
-    bucket_path: "docker-react"
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-274412780533"
+  bucket_path: "docker-react"
 on:
-    branch: master
+  branch: master
 
 access_key_id: $AWS_ACCESS_KEY
 secret_access_key:
-    secure: "$AWS_SECRET_KEY"
+  secure: "$AWS_SECRET_KEY"
